@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAW</title>
+</head>
+<body>
+    <h1>METODE SAW</h1>
+
+    <table id="matriks">
+      <tr>
+        <th>Alternatif</th>
+        <th>Kriteria 1</th>
+        <th>Kriteria 2</th>
+        <th>Kriteria 3</th>
+        <th>Kriteria 4</th>
+      </tr>
+      <tr>
+        <td>A1</td>
+        <td><input type="number" name="a1k1" min="0" max="10" /></td>
+        <td><input type="number" name="a1k2" min="0" max="10" /></td>
+        <td><input type="number" name="a1k3" min="0" max="10" /></td>
+        <td><input type="number" name="a1k4" min="0" max="10" /></td>
+      </tr>
+      <tr>
+        <td>A2</td>
+        <td><input type="number" name="a2k1" min="0" max="10" /></td>
+        <td><input type="number" name="a2k2" min="0" max="10" /></td>
+        <td><input type="number" name="a2k3" min="0" max="10" /></td>
+        <td><input type="number" name="a2k4" min="0" max="10" /></td>
+      </tr>
+      <tr>
+        <td>A3</td>
+        <td><input type="number" name="a3k1" min="0" max="10" /></td>
+        <td><input type="number" name="a3k2" min="0" max="10" /></td>
+        <td><input type="number" name="a3k3" min="0" max="10" /></td>
+        <td><input type="number" name="a3k4" min="0" max="10" /></td>
+      </tr>
+    </table>
+
+    <h2>Bobot Kriteria</h2>
+    <table id="bobot">
+      <tr>
+        <th>Kriteria</th>
+        <th>Bobot</th>
+      </tr>
+      <tr>
+        <td>K1</td>
+        <td><input type="number" name="k1" min="0" max="1" step="0.01" /></td>
+      </tr>
+      <tr>
+        <td>K2</td>
+        <td><input type="number" name="k2" min="0" max="1" step="0.01" /></td>
+      </tr>
+      <tr>
+        <td>K3</td>
+        <td><input type="number" name="k3" min="0" max="1" step="0.01" /></td>
+      </tr>
+      <tr>
+        <td>K4</td>
+        <td><input type="number" name="k4" min="0" max="1" step="0.01" /></td>
+      </tr>
+    </table>
+    <button onclick="hitung()">Hitung</button>
+
+    <h2>Hasil</h2>
+    <table id="hasil">
+      <tr>
+        <th>Alternatif  :</th>
+        <th>Nilai       :</th>
+      </tr>
+    </table>
+    <script src="function.js"></script>
+</body>
+</html>
