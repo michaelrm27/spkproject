@@ -80,28 +80,60 @@
                 <td><input type="text" id="a13" /></td>
                 <td><input type="text" id="a14" /></td>
               </tr>
-              <tr>
-                <td>A2</td>
-                <td><input type="text" id="a21" /></td>
-                <td><input type="text" id="a22" /></td>
-                <td><input type="text" id="a23" /></td>
-                <td><input type="text" id="a24" /></td>
-              </tr>
-              <tr>
-                <td>A3</td>
-                <td><input type="text" id="a31" /></td>
-                <td><input type="text" id="a32" /></td>
-                <td><input type="text" id="a33" /></td>
-                <td><input type="text" id="a34" /></td>
-              </tr>
-              <tr>
-                <td>A4</td>
-                <td><input type="text" id="a41" /></td>
-                <td><input type="text" id="a42" /></td>
-                <td><input type="text" id="a43" /></td>
-                <td><input type="text" id="a44" /></td>
-              </tr>
-            </tbody>
+          <tr>
+            <td>A2</td>
+            <td><input type="text" id="a21" /></td>
+            <td><input type="text" id="a22" /></td>
+            <td><input type="text" id="a23" /></td>
+            <td><input type="text" id="a24" /></td>
+          </tr>
+          <tr>
+            <td>A3</td>
+            <td><input type="text" id="a31" /></td>
+            <td><input type="text" id="a32" /></td>
+            <td><input type="text" id="a33" /></td>
+            <td><input type="text" id="a34" /></td>
+          </tr>
+          <tr>
+            <td>A4</td>
+            <td><input type="text" id="a41" /></td>
+            <td><input type="text" id="a42" /></td>
+            <td><input type="text" id="a43" /></td>
+            <td><input type="text" id="a44" /></td>
+          </tr>
+
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Kriteria Bobot</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr>
+        <td>Kriteria 1</td>
+        <td><input type="text" id="w3" /></td>
+      </tr>
+      <tr>
+        <td>Kriteria 2</td>
+        <td><input type="text" id="w4" /></td>
+      </tr>
+      <tr>
+        <td>Kriteria 3</td>
+        <td><input type="text" id="w3" /></td>
+      </tr>
+      <tr>
+        <td>Kriteria 4</td>
+        <td><input type="text" id="w4" /></td>
+      </tr>
+    </table>
+
+    <button class="button" onclick="hitung()">Hitung</button>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <table class="content-table" id="hasil">
+          <th></th>
+          <th></th>
           </table>
 
           <h2>Kriteria</h2>
@@ -206,11 +238,13 @@
                 altTerburuk += "A" + i;
               }
             }
-    
-            // menampilkan alternatif terbaik dan terburuk
-            hasil.innerHTML += "<p>Alternatif terbaik adalah " + altTerbaik + " dengan nilai " + maxV.toFixed(4) + "</p>";
-            hasil.innerHTML += "<p>Alternatif terburuk adalah " + altTerburuk + " dengan nilai " + minV.toFixed(4) + "</p>";
           }
-        </script>
+  
+          // menampilkan alternatif terbaik dan terburuk
+          hasil.innerHTML += "<p>Alternatif terbaik adalah " + altTerbaik + " dengan nilai " + maxV.toFixed(4) + "</p>";
+          hasil.innerHTML += "<p>Alternatif terburuk adalah " + altTerburuk + " dengan nilai " + minV.toFixed(4) + "</p>";
+        }
+      </script>
+      
 </body>
 </html>
