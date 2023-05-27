@@ -102,32 +102,7 @@
             <td><input type="text" id="a44" /></td>
           </tr>
 
-    <table class="content-table">
-      <thead>
-        <tr>
-          <th>Kriteria Bobot</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tr>
-        <td>Kriteria 1</td>
-        <td><input type="text" id="w3" /></td>
-      </tr>
-      <tr>
-        <td>Kriteria 2</td>
-        <td><input type="text" id="w4" /></td>
-      </tr>
-      <tr>
-        <td>Kriteria 3</td>
-        <td><input type="text" id="w3" /></td>
-      </tr>
-      <tr>
-        <td>Kriteria 4</td>
-        <td><input type="text" id="w4" /></td>
-      </tr>
-    </table>
-
-    <button class="button" onclick="hitung()">Hitung</button>
+  
     <table class="content-table">
       <thead>
         <tr>
@@ -169,11 +144,12 @@
               </tr>
             </tbody>
           </table>
-          <button class="button" onclick="hitung()">Hitung</button>
+          <button class="button" onclick="hitungtopsis()">Hitung</button>
         </div>
         <div id="hasil"></div>
+        
         <script>
-          function hitung() {
+          function hitungtopsis() {
             // mengambil nilai alternatif dari form
             var a11 = parseFloat(document.getElementById("a11").value);
             var a12 = parseFloat(document.getElementById("a12").value);
@@ -243,7 +219,7 @@
           // menampilkan alternatif terbaik dan terburuk
           hasil.innerHTML += "<p>Alternatif terbaik adalah " + altTerbaik + " dengan nilai " + maxV.toFixed(4) + "</p>";
           hasil.innerHTML += "<p>Alternatif terburuk adalah " + altTerburuk + " dengan nilai " + minV.toFixed(4) + "</p>";
-        }
+        
       </script>
       
 </body>
