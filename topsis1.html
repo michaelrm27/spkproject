@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPSIS</title>
+</head>
+<body>
+    <body>
+        <h1>METODE TOPSIS</h1>
+        <div id="form">
+          <h2>Alternatif</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Alternatif</th>
+                <th>Kriteria 1</th>
+                <th>Kriteria 2</th>
+                <th>Kriteria 3</th>
+                <th>Kriteria 4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>A1</td>
+                <td><input type="text" id="a11" /></td>
+                <td><input type="text" id="a12" /></td>
+                <td><input type="text" id="a13" /></td>
+                <td><input type="text" id="a14" /></td>
+              </tr>
+              <tr>
+                <td>A2</td>
+                <td><input type="text" id="a21" /></td>
+                <td><input type="text" id="a22" /></td>
+                <td><input type="text" id="a23" /></td>
+                <td><input type="text" id="a24" /></td>
+              </tr>
+              <tr>
+                <td>A3</td>
+                <td><input type="text" id="a31" /></td>
+                <td><input type="text" id="a32" /></td>
+                <td><input type="text" id="a33" /></td>
+                <td><input type="text" id="a34" /></td>
+              </tr>
+              <tr>
+                <td>A4</td>
+                <td><input type="text" id="a41" /></td>
+                <td><input type="text" id="a42" /></td>
+                <td><input type="text" id="a43" /></td>
+                <td><input type="text" id="a44" /></td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Kriteria</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Kriteria</th>
+                <th>Bobot</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Kriteria 1</td>
+                <td><input type="text" id="w1" /></td>
+              </tr>
+              <tr>
+                <td>Kriteria 2</td>
+                <td>
+                  <input
+                    type="text"
+                    id="
+                  w2"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Kriteria 3</td>
+                <td><input type="text" id="w3" /></td>
+              </tr>
+              <tr>
+                <td>Kriteria 4</td>
+                <td><input type="text" id="w4" /></td>
+              </tr>
+            </tbody>
+          </table>
+          <button onclick="hitung()">Hitung</button>
+        </div>
+        <div id="hasil"></div>
+        <script>
+          function hitung() {
+            // mengambil nilai alternatif dari form
+            var a11 = parseFloat(document.getElementById("a11").value);
+            var a12 = parseFloat(document.getElementById("a12").value);
+            var a13 = parseFloat(document.getElementById("a13").value);
+            var a14 = parseFloat(document.getElementById("a14").value);
+            var a21 = parseFloat(document.getElementById("a21").value);
+            var a22 = parseFloat(document.getElementById("a22").value);
+            var a23 = parseFloat(document.getElementById("a23").value);
+            var a24 = parseFloat(document.getElementById("a24").value);
+            var a31 = parseFloat(document.getElementById("a31").value);
+            var a32 = parseFloat(document.getElementById("a32").value);
+            var a33 = parseFloat(document.getElementById("a33").value);
+            var a34 = parseFloat(document.getElementById("a34").value);
+            var a41 = parseFloat(document.getElementById("a41").value);
+            var a42 = parseFloat(document.getElementById("a42").value);
+            var a43 = parseFloat(document.getElementById("a43").value);
+            var a44 = parseFloat(document.getElementById("a44").value);
+    
+            // mengambil nilai bobot kriteria dari form
+            var w1 = parseFloat(document.getElementById("w1").value);
+            var w2 = parseFloat(document.getElementById("w2").value);
+            var w3 = parseFloat(document.getElementById("w3").value);
+            var w4 = parseFloat(document.getElementById("w4").value);
+    
+            // menghitung bobot relatif
+            var totalW = w1 + w2 + w3 + w4;
+            var rw1 = w1 / totalW;
+            var rw2 = w2 / totalW;
+            var rw3 = w3 / totalW;
+            var rw4 = w4 / totalW;
+    
+            // menghitung matriks ternormalisasi
+            var s11 = a11 / Math.sqrt(a11 * a11 + a21 * a21 + a31 * a31 + a41 * a41);
+            var s21 = a21 / Math.sqrt(a11 * a11 + a21 * a21 + a31 * a31 + a41 * a41);
+            var s31 = a31 / Math.sqrt(a11 * a11 + a21 * a21 + a31 * a31 + a41 * a41);
+            var s41 = a41 / Math.sqrt(a11 * a11 + a21 * a21 + a31 * a31 + a41 * a41);
+            var s12 = a12 / Math.sqrt(a12 * a12 + a22 * a22 + a32 * a32 + a42 * a42);
+            var s22 = a22 / Math.sqrt(a12 * a12 + a22 * a22 + a32 * a32 + a42 * a42);
+            var s32 = a32 / Math.sqrt(a12 * rw1) - s12 * rw2 - s13 * rw3 - s14 * rw4;
+            var v2 = s21 * rw1 + s22 * rw2 + s23 * rw3 + s24 * rw4;
+            var v3 = s31 * rw1 + s32 * rw2 + s33 * rw3 + s34 * rw4;
+            var v4 = s41 * rw1 + s42 * rw2 + s43 * rw3 + s44 * rw4;
+    
+            // menampilkan hasil akhir
+            var hasil = document.getElementById("hasil");
+            hasil.innerHTML = "<h3>Hasil Analisis TOPSIS</h3>";
+            hasil.innerHTML += "<p>Vektor V1 : " + v1.toFixed(4) + "</p>";
+            hasil.innerHTML += "<p>Vektor V2 : " + v2.toFixed(4) + "</p>";
+            hasil.innerHTML += "<p>Vektor V3 : " + v3.toFixed(4) + "</p>";
+            hasil.innerHTML += "<p>Vektor V4 : " + v4.toFixed(4) + "</p>";
+    
+            // menentukan alternatif terbaik dan terburuk
+            var arrV = [v1, v2, v3, v4];
+            var maxV = Math.max(...arrV);
+            var minV = Math.min(...arrV);
+            var altTerbaik = "";
+            var altTerburuk = "";
+            for (var i = 1; i <= 4; i++) {
+              if (arrV[i - 1] == maxV) {
+                altTerbaik += "A" + i;
+              } else if (arrV[i - 1] == minV) {
+                altTerburuk += "A" + i;
+              }
+            }
+    
+            // menampilkan alternatif terbaik dan terburuk
+            hasil.innerHTML += "<p>Alternatif terbaik adalah " + altTerbaik + " dengan nilai " + maxV.toFixed(4) + "</p>";
+            hasil.innerHTML += "<p>Alternatif terburuk adalah " + altTerburuk + " dengan nilai " + minV.toFixed(4) + "</p>";
+          }
+        </script>
+</body>
+</html>

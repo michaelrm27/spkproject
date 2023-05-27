@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WP</title>
+</head>
+<body>
+    <h1>METODE WP</h1>
+    <table>
+      <tr>
+        <td>Kriteria</td>
+        <td>Bobot</td>
+        <td colspan="4">Alternatif</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>A1</td>
+        <td>A2</td>
+        <td>A3</td>
+        <td>A4</td>
+      </tr>
+      <tr>
+        <td>C1</td>
+        <td><input type="text" id="w1" /></td>
+        <td><input type="text" id="a11" /></td>
+        <td><input type="text" id="a12" /></td>
+        <td><input type="text" id="a13" /></td>
+        <td><input type="text" id="a14" /></td>
+      </tr>
+      <tr>
+        <td>C2</td>
+        <td><input type="text" id="w2" /></td>
+        <td><input type="text" id="a21" /></td>
+        <td><input type="text" id="a22" /></td>
+        <td><input type="text" id="a23" /></td>
+        <td><input type="text" id="a24" /></td>
+      </tr>
+      <tr>
+        <td>C3</td>
+        <td><input type="text" id="w3" /></td>
+        <td><input type="text" id="a31" /></td>
+        <td><input type="text" id="a32" /></td>
+        <td><input type="text" id="a33" /></td>
+        <td><input type="text" id="a34" /></td>
+      </tr>
+      <tr>
+        <td>C4</td>
+        <td><input type="text" id="w4" /></td>
+        <td><input type="text" id="a41" /></td>
+        <td><input type="text" id="a42" /></td>
+        <td><input type="text" id="a43" /></td>
+        <td><input type="text" id="a44" /></td>
+      </tr>
+    </table>
+    <br />
+    <button onclick="hitung()">Hitung</button>
+    <br /><br />
+    <table id="hasil">
+      <tr>
+        <td>Alternatif</td>
+        <td>Nilai Preferensi</td>
+      </tr>
+    </table>
+    <script>
+      function hitung() {
+        // Ambil nilai bobot
+        let w1 = parseFloat(document.getElementById("w1").value);
+        let w2 = parseFloat(document.getElementById("w2").value);
+        let w3 = parseFloat(document.getElementById("w3").value);
+        let w4 = parseFloat(document.getElementById("w4").value);
+
+        // Ambil nilai alternatif
+        let a11 = parseFloat(document.getElementById("a11").value);
+        let a12 = parseFloat(document.getElementById("a12").value);
+        let a13 = parseFloat(document.getElementById("a13").value);
+        let a14 = parseFloat(document.getElementById("a14").value);
+        let a21 = parseFloat(document.getElementById("a21").value);
+        let a22 = parseFloat(document.getElementById("a22").value);
+        let a23 = parseFloat(document.getElementById("a23").value);
+        let a24 = parseFloat(document.getElementById("a24").value);
+        let a31 = parseFloat(document.getElementById("a31").value);
+        let a32 = parseFloat(document.getElementById("a32").value);
+        let a33 = parseFloat(document.getElementById("a33").value);
+        let a34 = parseFloat(document.getElementById("a34").value);
+        let a41 = parseFloat(document.getElementById("a41").value);
+        let a42 = parseFloat(document.getElementById("a42").value);
+        let a43 = parseFloat(document.getElementById("a43").value);
+        let a44 = parseFloat(document.getElementById("a44").value);
+
+        // Hitung nilai S
+        let s1 = Math.pow(a11, w1) * Math.pow(a21, w2) * Math.pow(a31, w3) * Math.pow(a41, w4);
+        let s2 = Math.pow(a12, w1) * Math.pow(a22, w2) * Math.pow(a32, w3) * Math.pow(a42, w4);
+        let s3 = Math.pow(a13, w1) * Math.pow(a23, w2) * Math.pow(a33, w3) * Math.pow(a43, w4);
+        let s4 = Math.pow(a14, w1) * Math.pow(a24, w2) * Math.pow(a34, w3) * Math.pow(a44, w4);
+
+        // Hitung nilai V
+        let v1 = s1 / (s1 + s2 + s3 + s4);
+        let v2 = s2 / (s1 + s2 + s3 + s4);
+        let v3 = s3 / (s1 + s2 + s3 + s4);
+        let v4 = s4 / (s1 + s2 + s3 + s4);
+
+        // Tampilkan hasil
+        let tabelHasil = document.getElementById("hasil");
+        tabelHasil.innerHTML = "";
+        let row = tabelHasil.insertRow(-1);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        cell1.innerHTML = "A1";
+        cell2.innerHTML = v1.toFixed(3);
+        row = tabelHasil.insertRow(-1);
+        cell1 = row.insertCell(0);
+        cell2 = row.insertCell(1);
+        cell1.innerHTML = "A2";
+        cell2.innerHTML = v2.toFixed(3);
+        row = tabelHasil.insertRow(-1);
+        cell1 = row.insertCell(0);
+        cell2 = row.insertCell(1);
+        cell1.innerHTML = "A3";
+        cell2.innerHTML = v3.toFixed(3);
+        row = tabelHasil.insertRow(-1);
+        cell1 = row.insertCell(0);
+        cell2 = row.insertCell(1);
+        cell1.innerHTML = "A4";
+        cell2.innerHTML = v4.toFixed(3);
+      }
+    </script>
+</body>
+</html>
