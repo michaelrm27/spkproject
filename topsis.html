@@ -5,13 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOPSIS</title>
+
+    <style>
+      .content-table{
+  border-collapse: collapse;
+  margin: 25px 9;
+  font-size: 0.9em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr{
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td{
+  padding: 12px 15px;
+}
+
+.content-table tbody tr{
+  border-bottom: 1px solid #ddd;
+}
+
+.content-table tbody tr:nth-of-type(even){
+  background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type{
+  border-bottom: 2px solid #009879;
+}
+
+.button{
+  background-color: #009879; /* Green */
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+    </style>
+
+
+
 </head>
 <body>
     <body>
         <h1>METODE TOPSIS</h1>
-        <div id="form">
           <h2>Alternatif</h2>
-          <table>
+          <table class="content-table">
             <thead>
               <tr>
                 <th>Alternatif</th>
@@ -52,8 +103,9 @@
               </tr>
             </tbody>
           </table>
+
           <h2>Kriteria</h2>
-          <table>
+          <table class="content-table">
             <thead>
               <tr>
                 <th>Kriteria</th>
@@ -85,7 +137,7 @@
               </tr>
             </tbody>
           </table>
-          <button onclick="hitung()">Hitung</button>
+          <button class="button" onclick="hitung()">Hitung</button>
         </div>
         <div id="hasil"></div>
         <script>
