@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Implementasi TOPSIS</title>
+  <style>
+    table {
+      font-family: Arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Implementasi TOPSIS</h1>
+
+  <table id="topsisTable">
+    <thead>
+      <tr>
+        <th>Alternatif</th>
+        <th>Kriteria 1</th>
+        <th>Kriteria 2</th>
+        <th>Kriteria 3</th>
+        <th>Kriteria 4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Alternatif 1</td>
+        <td>0.7</td>
+        <td>0.5</td>
+        <td>0.9</td>
+        <td>0.6</td>
+      </tr>
+      <tr>
+        <td>Alternatif 2</td>
+        <td>0.8</td>
+        <td>0.6</td>
+        <td>0.7</td>
+        <td>0.9</td>
+      </tr>
+      <tr>
+        <td>Alternatif 3</td>
+        <td>0.6</td>
+        <td>0.7</td>
+        <td>0.8</td>
+        <td>0.7</td>
+      </tr>
+      <tr>
+        <td>Alternatif 4</td>
+        <td>0.9</td>
+        <td>0.9</td>
+        <td>0.6</td>
+        <td>0.8</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Hasil TOPSIS</h2>
+  <div id="result"></div>
+
+  <script>
+    function calculateTOPSIS() {
+      var table = document.getElementById("topsisTable");
+      var rows = table.getElementsByTagName("tr");
+
+      // Menghitung jumlah kolom dan baris
+      var numColumns = rows[0].cells.length - 1;
+      var numRows = rows.length - 1;
+
+      // Inisialisasi matriks keputusan dari tabel
+      var decisionMatrix = [];
+      for (var i = 1; i <= numRows; i++) {
+        decisionMatrix[i - 1] = [];
+        for (var j = 1; j <= numColumns; j++) {
+          decisionMatrix[i - 1][j - 1] = parseFloat(rows[i].cells[j].innerText);
+        }
+      }
+
+      // Menghitung bobot dari tiap kriteria
+      var weights = [0.25, 0.25, 0.25, 0.25];
+
+      // Menghitung matriks ternormalisasi
+      var normalizedMatrix = [];
+      for (var i = 0; i < numRows; i++) {
+        normalizedMatrix[i] = [];
+        var rowSum = 0;
+        for (var j = 0; j < numColumns; j++) {
+          rowSum += decisionMatrix[i][j] ** 2;
+        }
+        var sqrtRowSum = Math.sqrt(rowSum);
+        for (var j = 0; j < numColumns; j++) {
+          normalizedMatrix[i][j] = decisionMatrix[i][j] / sqrtRowSum;
+        }
+      }
+
+      // Menghitung matriks terbobot
+      var weightedMatrix = [];
+      for (var i = 0; i < numRows; i++) {
+        weightedMatrix[i] = [];
+        for (var j = 0; j < numColumns; j++) {
+          weightedMatrix[i][j] = normalizedMatrix[i][j] * weights[j];
+        }
+      }
+
+      // Menentukan solusi ideal positif (A+) dan solusi ideal negatif (A-)
+      var idealPositive = [];
+      var idealNegative = [];
+      for (var j = 0; j < numColumns; j++) {
+        var maxVal = weightedMatrix[0][j];
+        var minVal = weightedMatrix[0][j];
+        for (var i = 1; i < numRows; i++) {
+          maxVal = Math.max(maxVal, weightedMatrix[i][j]);
+          minVal = Math.min(minVal, weightedMatrix[i][j]);
+        }
+        idealPositive[j] = maxVal;
+        idealNegative[j] = minVal;
+      }
+
+      // Menghitung jarak tiap alternatif terhadap solusi ideal positif (Si+) dan solusi ideal negatif (Si-)
+      var positiveDistances = [];
+      var negativeDistances = [];
+      for (var i = 0; i < numRows; i++) {
+        var positiveDist = 0;
+        var negativeDist = 0;
+        for (var j = 0; j < numColumns; j++) {
+          positiveDist += (weightedMatrix[i][j] - idealPositive[j]) ** 2;
+          negativeDist += (weightedMatrix[i][j] - idealNegative[j]) ** 2;
+        }
+        positiveDistances[i] = Math.sqrt(positiveDist);
+        negativeDistances[i] = Math.sqrt(negativeDist);
+      }
+
+      // Menghitung nilai preferensi (Ci)
+      var preferences = [];
+      for (var i = 0; i < numRows; i++) {
+        preferences[i] = negativeDistances[i] / (positiveDistances[i] + negativeDistances[i]);
+      }
+
+      // Menentukan alternatif terbaik
+      var bestAlternativeIndex = 0;
+      var bestPreference = preferences[0];
+      for (var i = 1; i < numRows; i++) {
+        if (preferences[i] > bestPreference) {
+          bestAlternativeIndex = i;
+          bestPreference = preferences[i];
+        }
+      }
+
+      // Menampilkan hasil
+      var resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "Alternatif terbaik: " + rows[bestAlternativeIndex + 1].cells[0].innerText;
+    }
+
+    calculateTOPSIS();
+  </script>
+</body>
+</html>

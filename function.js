@@ -14,6 +14,11 @@ function hitung() {
     let a32 = parseFloat(document.getElementsByName("a3k2")[0].value);
     let a33 = parseFloat(document.getElementsByName("a3k3")[0].value);
     let a34 = parseFloat(document.getElementsByName("a3k4")[0].value);
+
+    let a41 = parseFloat(document.getElementsByName("a4k1")[0].value);
+    let a42 = parseFloat(document.getElementsByName("a4k2")[0].value);
+    let a43 = parseFloat(document.getElementsByName("a4k3")[0].value);
+    let a44 = parseFloat(document.getElementsByName("a4k4")[0].value);
   
     // Ambil nilai bobot dari input
     let w1 = parseFloat(document.getElementsByName("k1")[0].value);
@@ -25,6 +30,7 @@ function hitung() {
     let s1 = Math.sqrt(Math.pow(a11, 2) + Math.pow(a12, 2) + Math.pow(a13, 2) + Math.pow(a14, 2));
     let s2 = Math.sqrt(Math.pow(a21, 2) + Math.pow(a22, 2) + Math.pow(a23, 2) + Math.pow(a24, 2));
     let s3 = Math.sqrt(Math.pow(a31, 2) + Math.pow(a32, 2) + Math.pow(a33, 2) + Math.pow(a34, 2));
+    let s4 = Math.sqrt(Math.pow(a41, 2) + Math.pow(a42, 2) + Math.pow(a43, 2) + Math.pow(a44, 2));
   
     let n11 = a11 / s1;
     let n12 = a12 / s1;
@@ -40,11 +46,17 @@ function hitung() {
     let n32 = a32 / s3;
     let n33 = a33 / s3;
     let n34 = a34 / s3;
+
+    let n41 = a41 / s4;
+    let n42 = a42 / s4;
+    let n43 = a43 / s4;
+    let n44 = a44 / s4;
   
     // Hitung nilai preferensi
     let v1 = w1 * n11 + w2 * n12 + w3 * n13 + w4 * n14;
     let v2 = w1 * n21 + w2 * n22 + w3 * n23 + w4 * n24;
     let v3 = w1 * n31 + w2 * n32 + w3 * n33 + w4 * n34;
+    let v4 = w1 * n41 + w2 * n42 + w4 * n43 + w4 * n44;
   
     // Tampilkan hasil
     let table = document.getElementById("hasil");
@@ -64,5 +76,10 @@ function hitung() {
     let cell32 = row3.insertCell();
     cell31.innerHTML = "A3";
     cell32.innerHTML = v3.toFixed(4);
+    let row4 = table.insertRow();
+    let cell41 = row4.insertCell();
+    let cell42 = row4.insertCell();
+    cell41.innerHTML = "A4";
+    cell42.innerHTML = v4.toFixed(4);
   }
   
